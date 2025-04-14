@@ -1,0 +1,133 @@
+{
+  "videos": [
+    {
+      "title": "Intrusion Detection System Project using Python (NSL-KDD Dataset)",
+      "link": "https://www.youtube.com/watch?v=sAqW6umZDB0",
+      "why_relevant": "Demonstrates a complete implementation of an intrusion detection system using the NSL-KDD dataset with Python. The video explains how to build a resilient system capable of adapting to evolving threat landscapes using machine learning techniques."
+    },
+    {
+      "title": "Detecting Network Intrusions: An Analysis of NSL-KDD Dataset",
+      "link": "https://www.youtube.com/watch?v=Icm8gofAuZI",
+      "why_relevant": "Provides an analysis of the NSL-KDD dataset specifically for network intrusion detection, which is directly relevant to the project's focus on security anomaly detection."
+    },
+    {
+      "title": "Intrusion Detection System using Deep Learning (NSL-KDD Dataset)",
+      "link": "https://www.youtube.com/watch?v=LhYVsBMsN0c",
+      "why_relevant": "Shows how to implement an intrusion detection system using deep learning techniques with the NSL-KDD dataset. The video explains how the dataset contains records of simulated network connections with 43 features and labels for normal or attack categories grouped into 4 classes (DoS, Probe, U2R, R2L)."
+    },
+    {
+      "title": "Basics of Linear Algebra for AI and ML [with code]: Part 1",
+      "link": "https://www.youtube.com/watch?v=N1Pvj4CZT1M",
+      "why_relevant": "Covers essential linear algebra concepts needed for AI and ML with code implementation. Topics include vectors, matrices, operations like dot product, determinant, inverse, eigen decomposition, solving linear equations, and Singular Value Decomposition (SVD) - all fundamental to understanding how AI algorithms work."
+    },
+    {
+      "title": "Linear Algebra - Math for Machine Learning",
+      "link": "https://www.youtube.com/watch?v=uZeDTwWcnuY",
+      "why_relevant": "Explains why linear algebra is central to machine learning, showing how it's more like programming than traditional algebra. The video covers how arrays represent linear functions, the importance of SVD (Singular Value Decomposition) in ML, and practical applications of linear algebra concepts in machine learning algorithms."
+    }
+  ],
+  "papers": [
+    {
+      "title": "An investigation of the Intrusion detection system for the NSL-KDD dataset using machine-learning algorithms",
+      "link": "https://ieeexplore.ieee.org/document/10187360/",
+      "summary": "This paper analyzes the NSL-KDD dataset to assess the effectiveness of various classification algorithms in detecting anomalies in network traffic patterns. It investigates the relationship between hacker attacks and network protocols to determine how attackers generate abnormal traffic, providing valuable insights for improving IDS precision.",
+      "year": "2023"
+    },
+    {
+      "title": "Intrusion Detection System for NSL-KDD Dataset Based on Deep Learning and Recursive Feature Elimination",
+      "link": "https://www.researchgate.net/publication/354523827_Intrusion_Detection_System_for_NSL-KDD_Dataset_Based_on_Deep_Learning_and_Recursive_Feature_Elimination",
+      "summary": "This research focuses on the NSL-KDD dataset in Network Intrusion Detection Systems (NIDS) research, using deep learning techniques combined with recursive feature elimination to improve detection accuracy.",
+      "year": "2021"
+    },
+    {
+      "title": "Deep Stacking Network for Intrusion Detection",
+      "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8747112/",
+      "summary": "This paper researches the NSL-KDD data set and analyzes the latest developments and existing problems in the field of intrusion detection technology, proposing a deep stacking network approach.",
+      "year": "2021"
+    },
+    {
+      "title": "The Role of Linear Algebra in Artificial Intelligence: Foundations, Applications, and Innovations",
+      "link": "https://cten.edu.ly/images/pdf/8.pdf",
+      "summary": "This paper explores the critical role of linear algebra in AI, emphasizing the significance of vectors and matrices in machine learning, deep learning, and pattern recognition. It discusses advanced topics such as eigenvalue decomposition and singular value decomposition (SVD) in the context of AI applications, particularly in optimizing algorithms and improving computational efficiency.",
+      "year": "2025"
+    },
+    {
+      "title": "THE APPLICATION OF LINEAR ALGEBRA IN MACHINE LEARNING",
+      "link": "https://www.researchgate.net/publication/382399174_THE_APPLICATION_OF_LINEAR_ALGEBRA_IN_MACHINE_LEARNING",
+      "summary": "This study explores the significant impact of linear algebra on machine learning applications, highlighting its fundamental principles and practical implementations in various ML algorithms.",
+      "year": "2024"
+    },
+    {
+      "title": "Network intrusion detection: a comparative study of four classifiers",
+      "link": "https://iopscience.iop.org/article/10.1088/1742-6596/2161/1/012043/pdf",
+      "summary": "This paper focuses on models for an anomaly-based IDS trained on the KDD'99 and NSL-KDD datasets, providing a comparative analysis of four different classifiers for network intrusion detection.",
+      "year": "2022"
+    },
+    {
+      "title": "Comparative Analysis of ML Classifiers for Network Intrusion Detection",
+      "link": "https://www.researchgate.net/publication/335430444_Comparative_Analysis_of_ML_Classifiers_for_Network_Intrusion_Detection",
+      "summary": "This paper presents the comparative performance of NSL-KDD based data set compatible classification algorithms, evaluating multiple classifiers based on their performance metrics to determine the most suitable approach for intrusion detection.",
+      "year": "2019"
+    },
+    {
+      "title": "A Comparative Study of Intrusion Detection Systems Applied To NSL-KDD",
+      "link": "https://eijest.journals.ekb.eg/article_258706_ebab4bfae095d4bd81137bcacf53979b.pdf",
+      "summary": "This paper introduces a comparative study of multiple research papers related to anomaly detection using the NSL-KDD dataset, analyzing different intrusion detection approaches and their effectiveness.",
+      "year": "2022"
+    }
+  ],
+  "repos": [
+    {
+      "name": "thinline72/nsl-kdd",
+      "link": "https://github.com/thinline72/nsl-kdd",
+      "description": "A PySpark solution to the NSL-KDD dataset that implements various approaches including exploratory data analysis, feature selection, visualization via PCA, KMeans clustering with Random Forest Classifiers, Gaussian Mixture clustering, and supervised approaches for detecting different types of attacks. The repository includes a comprehensive Jupyter notebook with step-by-step implementation."
+    },
+    {
+      "name": "Mamcose/NSL-KDD-Network-Intrusion-Detection",
+      "link": "https://github.com/Mamcose/NSL-KDD-Network-Intrusion-Detection",
+      "description": "This repository uses machine learning algorithms for intrusion detection on the NSL-KDD dataset. It implements Random Forest, K-Neighbors, and Support Vector Classifier algorithms, as well as Ensemble Learning combining all models. The repository includes accuracy comparisons of all models and provides the complete dataset."
+    },
+    {
+      "name": "davidreynaldositorus/IntrusionDetectionSystem",
+      "link": "https://github.com/davidreynaldositorus/IntrusionDetectionSystem",
+      "description": "A comprehensive implementation of multiple machine learning approaches for intrusion detection using the NSL-KDD dataset. The repository includes Jupyter notebooks for SVM, Decision Tree, KNN, Naive Bayes, and ANN models, both with and without feature selection. It provides the complete NSL-KDD training and testing datasets."
+    }
+  ],
+  "courses": [
+    {
+      "name": "Linear Algebra for Machine Learning and Data Science",
+      "link": "https://www.coursera.org/learn/machine-learning-linear-algebra",
+      "platform": "Coursera (DeepLearning.AI)",
+      "focus": "A foundational course that teaches how to represent data as vectors and matrices, apply vector and matrix algebra operations, express matrix operations as linear transformations, and apply concepts of eigenvalues and eigenvectors to machine learning problems. Includes hands-on Python programming exercises."
+    },
+    {
+      "name": "Linear Algebra for Machine Learning",
+      "link": "https://www.youtube.com/playlist?list=PLRDl2inPrWQW1QSWhBU0ki-jq_uElkh2a",
+      "platform": "YouTube",
+      "focus": "A complete course on linear algebra specifically tailored for machine learning applications, covering all essential concepts needed for understanding AI algorithms."
+    },
+    {
+      "name": "Network Intrusion Detection using Deep Learning",
+      "link": "https://medium.com/geekculture/network-intrusion-detection-using-deep-learning-bcc91e9b999d",
+      "platform": "Medium",
+      "focus": "A comprehensive tutorial on implementing intrusion detection systems using the NSL-KDD dataset. Covers data preprocessing, feature extraction, and implementation of various machine learning models including SVM, KNN, LDA, MLP, and LSTM for both binary and multi-class classification."
+    }
+  ],
+  "books": [
+    {
+      "title": "Linear Algebra for Computer Vision, Robotics, and Machine Learning",
+      "link": "https://www.cis.upenn.edu/~cis5150/linalg-I-f.pdf",
+      "why_relevant": "This free textbook covers the mathematical fundamentals of linear algebra with applications to machine learning. It focuses on practical applications of linear algebra concepts in AI and includes optimization theory which is essential for understanding machine learning algorithms."
+    },
+    {
+      "title": "Computational Linear Algebra for Coders",
+      "link": "https://github.com/fastai/numerical-linear-algebra",
+      "why_relevant": "A free online textbook focused on matrix computations with acceptable speed and accuracy, which is crucial for implementing efficient machine learning algorithms. The material is presented as Jupyter notebooks with explanations and code examples."
+    },
+    {
+      "title": "Linear Algebra In Cyber Security",
+      "link": "https://ftp.thepearlsf.com/book-search:1677/LinearAlgebraInCyberSecurity.pdf",
+      "why_relevant": "This book explores the application of linear algebra in cybersecurity, particularly in cryptographic algorithms and security anomaly detection. It serves as a reference for researchers and professionals working in the field of Artificial Intelligence and Cybersecurity."
+    }
+  ]
+}
