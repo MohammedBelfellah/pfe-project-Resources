@@ -1,8 +1,16 @@
 // Load the JSON data
 document.addEventListener('DOMContentLoaded', function() {
+    showLoadingState();
+    addLoadingAnimation();
+    
     fetch('resources.json')
         .then(response => response.json())
         .then(data => {
+            // Remove loading skeletons
+            document.querySelectorAll('.skeleton').forEach(skeleton => {
+                skeleton.remove();
+            });
+            
             displayVideos(data.videos);
             displayPapers(data.papers);
             displayRepos(data.repos);
@@ -22,14 +30,14 @@ function displayVideos(videos) {
         
         card.innerHTML = `
             <div class="card-header">
-                <h3>YouTube Video</h3>
+                <h3>Video</h3>
             </div>
             <div class="card-body">
                 <h4 class="card-title">${video.title}</h4>
                 <p class="card-text">${video.why_relevant}</p>
             </div>
             <div class="card-footer">
-                <a href="${video.link}" target="_blank" class="btn">Watch Video</a>
+                <a href="${video.link}" target="_blank" class="btn">Watch</a>
             </div>
         `;
         
@@ -47,7 +55,7 @@ function displayPapers(papers) {
         
         card.innerHTML = `
             <div class="card-header">
-                <h3>Research Paper</h3>
+                <h3>Paper</h3>
             </div>
             <div class="card-body">
                 <h4 class="card-title">${paper.title}</h4>
@@ -55,7 +63,7 @@ function displayPapers(papers) {
                 <span class="year-tag">${paper.year}</span>
             </div>
             <div class="card-footer">
-                <a href="${paper.link}" target="_blank" class="btn">Read Paper</a>
+                <a href="${paper.link}" target="_blank" class="btn">Read</a>
             </div>
         `;
         
@@ -136,5 +144,94 @@ function displayBooks(books) {
         `;
         
         container.appendChild(card);
+    });
+}
+
+// Add loading animation
+function addLoadingAnimation() {
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section, index) => {
+        section.style.opacity = '0';
+        section.style.animation = `fadeIn 0.5s ease forwards ${index * 0.2}s`;
+    });
+}
+
+// Smooth scroll for navigation
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        const offset = 100; // Adjust this value based on your header height
+
+        const targetPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = targetPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Add active state to navigation items
+function updateActiveNavItem() {
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('nav a');
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const offset = 150; // Adjust this value to change when the active state triggers
+        
+        if (rect.top <= offset && rect.bottom >= offset) {
+            const targetId = `#${section.id}`;
+            navItems.forEach(item => {
+                if (item.getAttribute('href') === targetId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+    });
+}
+
+// Add scroll event listener for active state
+window.addEventListener('scroll', updateActiveNavItem);
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+// Observe all resource cards
+document.querySelectorAll('.resource-card').forEach(card => {
+    observer.observe(card);
+});
+
+// Add loading state
+function showLoadingState() {
+    const containers = document.querySelectorAll('.resource-grid');
+    containers.forEach(container => {
+        for (let i = 0; i < 3; i++) {
+            const skeleton = document.createElement('div');
+            skeleton.className = 'resource-card skeleton';
+            skeleton.innerHTML = `
+                <div class="card-header"></div>
+                <div class="card-body">
+                    <div style="height: 24px; margin-bottom: 15px;"></div>
+                    <div style="height: 60px;"></div>
+                </div>
+                <div class="card-footer"></div>
+            `;
+            container.appendChild(skeleton);
+        }
     });
 }

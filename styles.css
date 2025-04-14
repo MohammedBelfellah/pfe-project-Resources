@@ -1,11 +1,14 @@
 /* Global Styles */
 :root {
-    --primary-color: #3498db;
-    --secondary-color: #2c3e50;
-    --accent-color: #e74c3c;
-    --light-color: #ecf0f1;
-    --dark-color: #2c3e50;
-    --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --primary-color: #2563eb;    /* Brighter blue */
+    --secondary-color: #1e40af;  /* Darker blue */
+    --accent-color: #dc2626;     /* Red */
+    --light-color: #f3f4f6;      /* Light gray */
+    --dark-color: #1f2937;       /* Dark gray */
+    --card-bg: #ffffff;          /* White */
+    --text-primary: #111827;     /* Almost black */
+    --text-secondary: #4b5563;   /* Medium gray */
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
 
@@ -39,6 +42,27 @@ a:hover {
     color: var(--accent-color);
 }
 
+/* Add these new styles after the existing global styles */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced Header Animation */
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    position: relative;
+    overflow: hidden;
+    animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 /* Header Styles */
 header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -57,6 +81,33 @@ header h1 {
     opacity: 0.9;
     max-width: 800px;
     margin: 0 auto;
+}
+
+/* Navigation Enhancement */
+nav {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav ul li:hover::after {
+    width: 80%;
 }
 
 /* Navigation Styles */
@@ -127,52 +178,154 @@ section h2 {
 /* Resource Grid Styles */
 .resource-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px 0;
+}
+
+/* Enhanced Card Animations */
+.resource-card {
+    position: relative;
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(44, 62, 80, 0.1));
+    opacity: 0;
+    transition: all 0.4s ease;
+    border-radius: 8px;
+}
+
+.resource-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.resource-card:hover::before {
+    opacity: 1;
+}
+
+/* Loading Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .resource-card {
-    background-color: white;
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.resource-card {
+    background-color: var(--card-bg);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    height: 100%;
+    height: auto;
+    min-height: 200px;
     display: flex;
     flex-direction: column;
+    border: 1px solid #e5e7eb;
 }
 
 .resource-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
-    padding: 15px;
+    padding: 8px 12px;
     background-color: var(--primary-color);
     color: white;
+    border-radius: 8px 8px 0 0;
 }
 
+.card-header h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-header h3::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+#videos .card-header h3::before { content: "\f03d"; }
+#papers .card-header h3::before { content: "\f1ea"; }
+#repos .card-header h3::before { content: "\f126"; }
+#courses .card-header h3::before { content: "\f19d"; }
+#books .card-header h3::before { content: "\f02d"; }
+
 .card-body {
-    padding: 20px;
+    padding: 12px;
     flex-grow: 1;
 }
 
 .card-title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: var(--secondary-color);
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 2.8em;
 }
 
 .card-text {
-    color: #666;
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.2em;
 }
 
 .card-footer {
     padding: 15px;
     background-color: #f8f9fa;
     border-top: 1px solid #eee;
+}
+
+/* Enhanced Button Styles */
+.btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--secondary-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    width: 300%;
+    height: 300%;
 }
 
 .btn {
@@ -182,11 +335,27 @@ section h2 {
     padding: 8px 15px;
     border-radius: 4px;
     transition: var(--transition);
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .btn:hover {
     background-color: var(--secondary-color);
     color: white;
+}
+
+/* Skeleton Loading */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
 }
 
 .year-tag {
@@ -206,6 +375,24 @@ section h2 {
     padding: 3px 8px;
     border-radius: 4px;
     font-size: 0.8rem;
+}
+
+/* Enhanced Tags */
+.year-tag, .platform-tag {
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.year-tag:hover, .platform-tag:hover {
+    transform: scale(1.1);
+}
+
+.year-tag, .platform-tag {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 8px;
 }
 
 /* Footer Styles */
@@ -239,14 +426,341 @@ footer {
     .resource-grid {
         grid-template-columns: 1fr;
     }
+
+    nav {
+        padding: 10px 0;
+    }
+
+    nav ul {
+        background: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin: 10px;
+    }
+
+    .resource-card {
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    /* Enhanced Mobile Navigation */
+    nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-around;
+        padding: 8px;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+    }
+
+    /* Use icons for navigation */
+    nav a::before {
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 1.2rem;
+    }
+
+    nav a[href="#videos"]::before { content: "\f03d"; }
+    nav a[href="#papers"]::before { content: "\f1ea"; }
+    nav a[href="#repos"]::before { content: "\f126"; }
+    nav a[href="#courses"]::before { content: "\f19d"; }
+    nav a[href="#books"]::before { content: "\f02d"; }
+
+    main {
+        padding-bottom: 70px;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+    }
+
+    .card-text {
+        font-size: 0.85rem;
+    }
+
+    /* Enhanced Card Layout */
+    .resource-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .resource-card {
+        margin: 0;
+        border-radius: 12px;
+    }
+
+    /* Improved Card Header */
+    .card-header {
+        padding: 12px 15px;
+    }
+
+    .card-header h3 {
+        font-size: 1rem;
+    }
+
+    /* Compact Card Body */
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Enhanced Mobile Tags */
+    .year-tag, .platform-tag {
+        font-size: 0.75rem;
+        padding: 2px 6px;
+    }
+
+    /* Improved Button Style */
+    .btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+
+    /* Header Adjustments */
+    header {
+        padding: 30px 0 20px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+        line-height: 1.3;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    /* Section Adjustments */
+    section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+
+    #intro {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+
+    #intro p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    #intro ul {
+        margin-left: 15px;
+    }
+
+    #intro li {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    /* Update the mobile navigation styles */
+    /* Fix navigation positioning */
+    nav {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 4px;
+    }
+
+    nav ul {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: 4px;
+        padding: 2px;
+        background: transparent;
+        margin: 0;
+    }
+
+    nav li {
+        margin: 0;
+        text-align: center;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        padding: 8px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        background: var(--light-color);
+        min-height: 35px;
+        color: var(--dark-color);
+        font-weight: 500;
+    }
+
+    /* Active state */
+    nav a.active {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Last item centered */
+    nav ul li:last-child {
+        grid-column: 2;
+    }
+
+    /* Adjust content spacing */
+    main {
+        padding-top: 10px;
+    }
+
+    section {
+        scroll-margin-top: 60px;
+    }
+
+    /* Adjust section headers */
+    section h2 {
+        position: sticky;
+        top: 55px;
+        font-size: 1.2rem;
+        padding: 8px;
+        margin: 0 0 10px 0;
+    }
 }
 
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.8rem;
+/* Small Phone Optimizations */
+@media (max-width: 360px) {
+    nav a {
+        font-size: 0.65rem;
+        min-height: 40px;
     }
-    
+
+    nav a::before {
+        font-size: 0.9rem;
+    }
+
+    .card-header h3 {
+        font-size: 0.9rem;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+
+    .resource-card {
+        background-color: #2d2d2d;
+        border-color: #3d3d3d;
+    }
+
+    .card-text {
+        color: #b0b0b0;
+    }
+
+    nav {
+        background-color: rgba(45, 45, 45, 0.95);
+    }
+
+    nav a {
+        color: #f0f0f0;
+    }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+    nav a {
+        background: var(--dark-color);
+        color: var(--light-color);
+    }
+
     section h2 {
-        font-size: 1.5rem;
+        background: var(--dark-color);
+    }
+}
+
+/* Dark Mode Adjustments for Mobile */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+    nav {
+        background: rgba(45, 45, 45, 0.95);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .resource-card {
+        background-color: #2d2d2d;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-header {
+        background-color: #1a1a1a;
+    }
+
+    .card-footer {
+        background-color: #1a1a1a;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .resource-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    nav, .btn {
+        display: none;
     }
 }
