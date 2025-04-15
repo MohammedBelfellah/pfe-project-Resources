@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     // Load and display content
     const response = await fetch("resources.json");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
 
     // Display content sections
@@ -36,23 +39,35 @@ document.addEventListener("DOMContentLoaded", async function () {
     displayCourses(data.courses);
     displayBooks(data.books);
 
-    // Make content visible
+    // Make content visible (redundant if CSS handles it, but safe)
     document.querySelectorAll("section").forEach((section) => {
       section.style.display = "block";
       section.style.visibility = "visible";
       section.style.opacity = "1";
     });
-
-    // Show main content
     const main = document.querySelector("main");
     main.style.display = "block";
     main.style.visibility = "visible";
     main.style.opacity = "1";
 
-    // Initialize navigation
+    // Initialize navigation AFTER content is loaded and displayed
     initializeNavigation();
+
+    // Force layout recalc might be needed AFTER dynamic content
+    document.body.style.display = "none";
+    document.body.offsetHeight; // Trigger reflow
+    document.body.style.display = "";
   } catch (error) {
-    console.error("Error loading content:", error);
+    console.error("Error loading or processing content:", error);
+    // Display error message to user?
+    const mainElement = document.querySelector("main");
+    if (mainElement) {
+      mainElement.innerHTML =
+        '<p style="color: red; text-align: center; padding: 20px;">Failed to load resources. Please check the console for errors.</p>';
+      mainElement.style.display = "block";
+      mainElement.style.visibility = "visible";
+      mainElement.style.opacity = "1";
+    }
   }
 });
 
@@ -194,93 +209,95 @@ function addLoadingAnimation() {
 
 // Remove the existing scroll code and replace it with this:
 document.addEventListener("DOMContentLoaded", function () {
-  // Handle navigation clicks
-  document.querySelectorAll("nav a").forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
+  initializeNavigation();
+  // No need to call updateScrollMargins here if set in CSS
+});
 
-      // Get the target section
-      const targetId = this.getAttribute("href").substring(1);
-      const targetSection = document.getElementById(targetId);
+// Simplified Navigation Initialization
+function initializeNavigation() {
+  const navLinks = document.querySelectorAll("nav a");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href"); // e.g., "#videos"
+      const targetSection = document.querySelector(targetId);
 
       if (targetSection) {
-        // Get the nav height
-        const navHeight = document.querySelector("nav").offsetHeight;
+        // Let the browser handle the scroll with CSS offsets
+        targetSection.scrollIntoView({ behavior: "smooth" });
 
-        // Calculate position
-        const targetPosition = targetSection.offsetTop - navHeight;
-
-        // Scroll to target
-        window.scrollTo({
-          top: targetPosition,
-          behavior: "smooth",
-        });
-
-        // Update active state
-        document
-          .querySelectorAll("nav a")
-          .forEach((a) => a.classList.remove("active"));
+        // Update active state immediately on click
+        navLinks.forEach((lnk) => lnk.classList.remove("active"));
         this.classList.add("active");
       }
     });
   });
-});
 
-// Update scroll margins
-function updateScrollMargins() {
-  const navHeight = document.querySelector("nav").offsetHeight;
-  document.querySelectorAll("section").forEach((section) => {
-    section.style.scrollMarginTop = `${navHeight + 20}px`;
-  });
+  // Initial active state update on load
+  updateActiveNavItemOnScroll();
 }
 
-// Call on load and resize
-window.addEventListener("load", updateScrollMargins);
-window.addEventListener("resize", updateScrollMargins);
-
-// Update active state on scroll
-window.addEventListener("scroll", function () {
-  const navHeight = document.querySelector("nav").offsetHeight;
-  const scrollPosition = window.scrollY + navHeight + 50;
+// Update active state on scroll (slightly adjusted offset logic)
+function updateActiveNavItemOnScroll() {
+  const navHeight = document.querySelector("nav")?.offsetHeight || 80; // Estimate nav height
+  // Adjust offset: consider nav height and a small buffer
+  const scrollPosition = window.scrollY + navHeight + 20;
 
   document.querySelectorAll("section").forEach((section) => {
-    const top = section.offsetTop;
-    const bottom = top + section.offsetHeight;
+    const sectionTop = section.offsetTop;
+    const sectionBottom = sectionTop + section.offsetHeight;
     const id = section.getAttribute("id");
     const navLink = document.querySelector(`nav a[href="#${id}"]`);
 
-    if (scrollPosition >= top && scrollPosition < bottom) {
-      navLink.classList.add("active");
-    } else {
-      navLink.classList.remove("active");
-    }
-  });
-});
-
-// Add active state to navigation items
-function updateActiveNavItem() {
-  const sections = document.querySelectorAll("section");
-  const navItems = document.querySelectorAll("nav a");
-
-  sections.forEach((section) => {
-    const rect = section.getBoundingClientRect();
-    const offset = 150; // Adjust this value to change when the active state triggers
-
-    if (rect.top <= offset && rect.bottom >= offset) {
-      const targetId = `#${section.id}`;
-      navItems.forEach((item) => {
-        if (item.getAttribute("href") === targetId) {
-          item.classList.add("active");
-        } else {
-          item.classList.remove("active");
+    if (navLink) {
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        // Check if another link is already active (prefer lower sections if overlapping)
+        const currentActive = document.querySelector("nav a.active");
+        if (currentActive && currentActive !== navLink) {
+          const currentActiveSection = document.querySelector(
+            currentActive.getAttribute("href")
+          );
+          if (
+            currentActiveSection &&
+            currentActiveSection.offsetTop < sectionTop
+          ) {
+            // The current active section is above this one, keep it active
+          } else {
+            currentActive.classList.remove("active");
+            navLink.classList.add("active");
+          }
+        } else if (!currentActive) {
+          navLink.classList.add("active");
         }
-      });
+      } else {
+        navLink.classList.remove("active");
+      }
     }
   });
+
+  // Ensure at least one item is active if near top or bottom
+  const firstLink = document.querySelector("nav a");
+  const lastLink =
+    document.querySelectorAll("nav a")[
+      document.querySelectorAll("nav a").length - 1
+    ];
+  if (!document.querySelector("nav a.active")) {
+    if (window.scrollY < 100 && firstLink) {
+      // Near top
+      firstLink.classList.add("active");
+    } else if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 &&
+      lastLink
+    ) {
+      // Near bottom
+      lastLink.classList.add("active");
+    }
+  }
 }
 
 // Add scroll event listener for active state
-window.addEventListener("scroll", updateActiveNavItem);
+window.addEventListener("scroll", updateActiveNavItemOnScroll);
 
 // Intersection Observer for scroll animations
 const observer = new IntersectionObserver(
@@ -322,19 +339,6 @@ function showLoadingState() {
   });
 }
 
-// Add scroll listener for fixed navigation
-window.addEventListener("scroll", function () {
-  const nav = document.querySelector("nav");
-  const header = document.querySelector("header");
-  const headerBottom = header.offsetTop + header.offsetHeight;
-
-  if (window.scrollY >= headerBottom) {
-    nav.classList.add("nav-fixed");
-  } else {
-    nav.classList.remove("nav-fixed");
-  }
-});
-
 // Ensure content is visible after loading
 document.addEventListener("DOMContentLoaded", function () {
   // Force layout recalculation
@@ -353,22 +357,3 @@ document.addEventListener("DOMContentLoaded", function () {
     section.style.opacity = "1";
   });
 });
-
-// Add this new function for navigation
-function initializeNavigation() {
-  const navLinks = document.querySelectorAll("nav a");
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetSection = document.querySelector(targetId);
-
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: "smooth" });
-        navLinks.forEach((link) => link.classList.remove("active"));
-        this.classList.add("active");
-      }
-    });
-  });
-}
