@@ -252,3 +252,16 @@ function showLoadingState() {
         }
     });
 }
+
+// Add scroll listener for fixed navigation
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    const header = document.querySelector('header');
+    const headerBottom = header.offsetTop + header.offsetHeight;
+
+    if (window.scrollY >= headerBottom) {
+        nav.classList.add('nav-fixed');
+    } else {
+        nav.classList.remove('nav-fixed');
+    }
+});
