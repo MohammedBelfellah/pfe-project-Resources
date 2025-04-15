@@ -1,1093 +1,1954 @@
 :root {
-    --primary-color: #2563eb;    /* Brighter blue (kept for consistency) */
-    --secondary-color: #1e3a8a;  /* Slightly richer navy for more depth */
-    --accent-color: #f43f5e;     /* More vibrant and modern red-pink for callouts */
-    --light-color: #f8fafc;      /* Cleaner light gray, closer to white */
-    --dark-color: #1e293b;       /* Deep slate blue for modern dark theme */
-    --card-bg: #ffffff;          /* Clean white for cards */
-    --text-primary: #111827;     /* Crisp blackish-blue for high readability */
-    --text-secondary: #64748b;   /* Neutral gray-blue for less focus text */
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
+  --primary-color: #2563eb; /* Brighter blue (kept for consistency) */
+  --secondary-color: #1e3a8a; /* Slightly richer navy for more depth */
+  --accent-color: #f43f5e; /* More vibrant and modern red-pink for callouts */
+  --light-color: #f8fafc; /* Cleaner light gray, closer to white */
+  --dark-color: #1e293b; /* Deep slate blue for modern dark theme */
+  --card-bg: #ffffff; /* Clean white for cards */
+  --text-primary: #111827; /* Crisp blackish-blue for high readability */
+  --text-secondary: #64748b; /* Neutral gray-blue for less focus text */
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
 /* Add these viewport fixes at the top of your CSS file */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
+/* Reset basic styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--light-color);
+  min-height: 100vh;
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 a {
-    text-decoration: none;
-    color: var(--primary-color);
-    transition: var(--transition);
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition);
 }
 
 a:hover {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 /* Add these new styles after the existing global styles */
 
 /* Smooth Scrolling */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on your nav height */
 }
 
 /* Enhanced Header Animation */
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    position: relative;
-    overflow: hidden;
-    animation: gradientFlow 15s ease infinite;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var (--secondary-color)
+  );
+  position: relative;
+  overflow: hidden;
+  animation: gradientFlow 15s ease infinite;
 }
 
 @keyframes gradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Header Styles */
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 40px 15px;
-    text-align: center;
-    margin-bottom: 20px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  color: white;
+  padding: 40px 15px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 header .container {
-    max-width: 800px;
-    margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 header h1 {
-    font-size: 2rem;
-    line-height: 1.3;
-    margin-bottom: 15px;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-    opacity: 0.9;
-    padding: 0 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  opacity: 0.9;
+  padding: 0 15px;
 }
 
 header blockquote {
-    font-style: italic;
-    color: #ffffff;
-    margin: 20px auto 0;
-    padding: 15px;
-    max-width: 600px;
-    border-left: 3px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    font-size: 0.95rem;
-    line-height: 1.4;
+  font-style: italic;
+  color: #ffffff;
+  margin: 20px auto 0;
+  padding: 15px;
+  max-width: 600px;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }
 
 /* Navigation Enhancement */
 nav {
-    position: relative;  /* Change to relative by default */
-    width: 100%;
-    background: var(--card-bg);
-    z-index: 1000;
-    padding: 6px 0;
-    transition: all 0.3s ease;
+  position: relative; /* Change to relative by default */
+  width: 100%;
+  background: var(--card-bg);
+  z-index: 1000;
+  padding: 6px 0;
+  transition: all 0.3s ease;
 }
 
 nav ul li {
-    position: relative;
+  position: relative;
 }
 
 nav ul li::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--primary-color);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
 }
 
 nav ul li:hover::after {
-    width: 80%;
+  width: 80%;
 }
 
 /* Navigation Styles */
 nav {
-    background: var(--card-bg);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    padding: 6px 0;
+  background: var(--card-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 6px 0;
 }
 
 nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
 }
 
 nav li {
-    margin: 0;
+  margin: 0;
 }
 
 nav a {
-    display: block;
-    padding: 15px 20px;
-    color: var(--dark-color);
-    font-weight: 500;
-    transition: var(--transition);
+  display: block;
+  padding: 15px 20px;
+  color: var(--dark-color);
+  font-weight: 500;
+  transition: var(--transition);
 }
 
 nav a:hover {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 /* Main Content Styles */
 main {
-    padding: 40px 0;
-    padding-top: 100px;  /* Adjust this value based on your nav height */
+  padding: 40px 0;
+  padding-top: 100px; /* Adjust this value based on your nav height */
 }
 
 section {
-    margin-bottom: 60px;
-    scroll-margin-top: 100px;  /* Match the main padding-top */
+  margin-bottom: 60px;
+  scroll-margin-top: 80px; /* Should match scroll-padding-top */
 }
 
 section h2 {
-    color: var(--secondary-color);
-    margin-bottom: 25px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary-color);
+  color: var(--secondary-color);
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
 }
 
 #intro {
-    background-color: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    margin: 25px 15px 40px 15px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin: 25px 15px 40px 15px;
 }
 
 #intro p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: var (--text-primary);
 }
 
 #intro ul {
-    margin: 20px 0 20px 25px;
-    list-style-type: disc;
+  margin: 20px 0 20px 25px;
+  list-style-type: disc;
 }
 
 #intro li {
-    margin-bottom: 12px;
-    line-height: 1.5;
-    color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: var(--text-primary);
 }
 
 /* Resource Grid Styles */
 .resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
-    padding: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
 }
 
 /* Enhanced Card Animations */
 .resource-card {
-    position: relative;
-    transform: translateY(0);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform: translateY(0);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .resource-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(44, 62, 80, 0.1));
-    opacity: 0;
-    transition: all 0.4s ease;
-    border-radius: 8px;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(52, 152, 219, 0.1),
+    rgba(44, 62, 80, 0.1)
+  );
+  opacity: 0;
+  transition: all 0.4s ease;
+  border-radius: 8px;
 }
 
 .resource-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .resource-card:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 /* Loading Animation */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .resource-card {
-    animation: fadeIn 0.6s ease forwards;
+  animation: fadeIn 0.6s ease forwards;
 }
 
 .resource-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    height: auto;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #e5e7eb;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  height: auto;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
 }
 
 .resource-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
-    padding: 8px 12px;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 8px 8px 0 0;
+  padding: 8px 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 8px 8px 0 0;
 }
 
 .card-header h3 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .card-header h3::before {
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 1rem;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 1rem;
 }
 
-#videos .card-header h3::before { content: "\f03d"; }
-#papers .card-header h3::before { content: "\f1ea"; }
-#repos .card-header h3::before { content: "\f126"; }
-#courses .card-header h3::before { content: "\f19d"; }
-#books .card-header h3::before { content: "\f02d"; }
+#videos .card-header h3::before {
+  content: "\f03d";
+}
+#papers .card-header h3::before {
+  content: "\f1ea";
+}
+#repos .card-header h3::before {
+  content: "\f126";
+}
+#courses .card-header h3::before {
+  content: "\f19d";
+}
+#books .card-header h3::before {
+  content: "\f02d";
+}
 
 .card-body {
-    padding: 12px;
-    flex-grow: 1;
+  padding: 12px;
+  flex-grow: 1;
 }
 
 .card-title {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin-bottom: 8px;
-    color: var(--text-primary);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 2.8em;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.8em;
 }
 
 .card-text {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 4.2em;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 4.2em;
 }
 
 .card-footer {
-    padding: 15px;
-    background-color: #f8f9fa;
-    border-top: 1px solid #eee;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #eee;
 }
 
 /* Enhanced Button Styles */
 .btn {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s ease;
 }
 
 .btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: var(--secondary-color);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.6s ease;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  z-index: -1;
 }
 
 .btn:hover::before {
-    width: 300%;
-    height: 300%;
+  width: 300%;
+  height: 300%;
 }
 
 .btn {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 4px;
-    transition: var(--transition);
-    width: 100%;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    text-align: center;
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  transition: var(--transition);
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
-    color: white;
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 /* Skeleton Loading */
 .skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
 }
 
 @keyframes loading {
-    from { background-position: 200% 0; }
-    to { background-position: -200% 0; }
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 .year-tag {
-    display: inline-block;
-    background-color: var(--light-color);
-    color: var(--dark-color);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    margin-right: 8px;
+  display: inline-block;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-right: 8px;
 }
 
 .platform-tag {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
 }
 
 /* Enhanced Tags */
-.year-tag, .platform-tag {
-    transform: scale(1);
-    transition: all 0.3s ease;
+.year-tag,
+.platform-tag {
+  transform: scale(1);
+  transition: all 0.3s ease;
 }
 
-.year-tag:hover, .platform-tag:hover {
-    transform: scale(1.1);
+.year-tag:hover,
+.platform-tag:hover {
+  transform: scale(1.1);
 }
 
-.year-tag, .platform-tag {
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    border-radius: 3px;
-    display: inline-block;
-    margin-bottom: 8px;
+.year-tag,
+.platform-tag {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 8px;
 }
 
 /* Footer Styles */
 footer {
-    background-color: var(--secondary-color);
-    color: white;
-    text-align: center;
-    padding: 25px 0;
-    margin-top: 40px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  margin-top: 40px;
 }
 
 footer .container {
-    padding: 0 15px;
+  padding: 0 15px;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    header {
-        padding: 30px 12px;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-        margin-bottom: 12px;
-        padding: 0 10px;
-    }
-
-    .subtitle {
-        font-size: 0.9rem;
-        padding: 0 12px;
-        margin-bottom: 15px;
-    }
-
-    header blockquote {
-        font-size: 0.85rem;
-        padding: 12px;
-        margin: 15px 12px 0;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    nav a {
-        padding: 10px;
-    }
-    
-    .resource-grid {
-        grid-template-columns: 1fr;
-    }
-
-    nav {
-        position: relative;
-        width: 100%;
-        background: var(--card-bg);
-        z-index: 1000;
-        padding: 4px 0;
-    }
-
-    .nav-fixed {
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-
-    /* Adjust main content when nav is fixed */
-    .nav-fixed + main {
-        padding-top: 60px;
-    }
-
-    main {
-        transition: padding-top 0.3s ease;
-    }
-
-    nav .container {
-        width: 100%;
-        padding: 0 6px;
-        max-width: 100%;
-    }
-
-    nav ul {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
-        gap: 4px;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        background: transparent;
-    }
-
-    main {
-        padding-top: 80px;  /* Adjust for mobile nav height */
-    }
-
-    section {
-        scroll-margin-top: 80px;
-    }
-
-    /* Adjust section headers */
-    section h2 {
-        position: sticky;
-        top: 70px;  /* Adjust based on nav height */
-        background: var(--card-bg);
-        z-index: 90;
-        margin: 0;
-        padding: 10px;
-    }
-
-    nav ul {
-        background: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        margin: 10px;
-    }
-
-    .resource-card {
-        margin: 10px 0;
-    }
-
-    .container {
-        padding: 0 20px;
-    }
-
-    /* Enhanced Mobile Navigation */
-    nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-    }
-
-    nav ul {
-        display: flex;
-        justify-content: space-around;
-        padding: 8px;
-    }
-
-    nav a {
-        font-size: 0.8rem;
-        padding: 8px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-    }
-
-    /* Use icons for navigation */
-    nav a::before {
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        font-size: 1.2rem;
-    }
-
-    nav a[href="#videos"]::before { content: "\f03d"; }
-    nav a[href="#papers"]::before { content: "\f1ea"; }
-    nav a[href="#repos"]::before { content: "\f126"; }
-    nav a[href="#courses"]::before { content: "\f19d"; }
-    nav a[href="#books"]::before { content: "\f02d"; }
-
-    main {
-        padding-bottom: 70px;
-    }
-
-    .resource-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 12px;
-    }
-
-    .card-title {
-        font-size: 0.95rem;
-    }
-
-    .card-text {
-        font-size: 0.85rem;
-    }
-
-    /* Enhanced Card Layout */
-    .resource-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .resource-card {
-        margin: 0;
-        border-radius: 12px;
-    }
-
-    /* Improved Card Header */
-    .card-header {
-        padding: 12px 15px;
-    }
-
-    .card-header h3 {
-        font-size: 1rem;
-    }
-
-    /* Compact Card Body */
-    .card-body {
-        padding: 15px;
-    }
-
-    .card-title {
-        font-size: 1.1rem;
-        line-height: 1.3;
-    }
-
-    .card-text {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-
-    /* Enhanced Mobile Tags */
-    .year-tag, .platform-tag {
-        font-size: 0.75rem;
-        padding: 2px 6px;
-    }
-
-    /* Improved Button Style */
-    .btn {
-        width: 100%;
-        text-align: center;
-        padding: 10px;
-        font-size: 0.9rem;
-        border-radius: 6px;
-    }
-
-    /* Header Adjustments */
-    header {
-        padding: 30px 0 20px;
-    }
-
-    header h1 {
-        font-size: 1.6rem;
-        line-height: 1.3;
-        margin-bottom: 10px;
-    }
-
-    .subtitle {
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-
-    /* Section Adjustments */
-    section h2 {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
-    }
-
-    #intro {
-        padding: 20px 15px;
-        margin: 12px 8px 25px 8px;
-    }
-
-    #intro p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 12px;
-    }
-
-    #intro ul {
-        margin: 12px 0 12px 20px;
-    }
-
-    #intro li {
-        margin-bottom: 8px;
-        font-size: 0.9rem;
-    }
-
-    /* Update the mobile navigation styles */
-    /* Fix navigation positioning */
-    nav {
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: var(--card-bg);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        padding: 6px 0;
-        margin-top: 4px;
-    }
-
-    nav .container {
-        width: 100%;
-        padding: 0 6px;
-        max-width: 100%;
-    }
-
-    nav ul {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, auto);
-        gap: 4px;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        background: transparent;
-    }
-
-    nav li {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-    }
-
-    nav a {
-        font-size: 0.7rem;
-        padding: 6px 2px;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 4px;
-        background: var(--light-color);
-        min-height: 32px;
-        width: 100%;
-        color: var(--dark-color);
-        font-weight: 500;
-    }
-
-    /* Update the grid layout for the last item */
-    nav ul li:nth-child(4) {
-        grid-column: 1/2;
-    }
-    
-    nav ul li:nth-child(5) {
-        grid-column: 2/3;
-    }
-
-    /* Active state */
-    nav a.active {
-        background: var(--primary-color);
-        color: white;
-    }
-
-    /* Adjust main content spacing */
-    main {
-        padding-top: 8px;
-    }
-
-    section {
-        scroll-margin-top: 90px;
-    }
-
-    /* Adjust section headers */
-    section h2 {
-        position: sticky;
-        top: 85px;
-        font-size: 1.1rem;
-        padding: 8px;
-        margin: 0 0 8px 0;
-        background: var(--card-bg);
-        border-radius: 4px;
-    }
-
-    /* Update mobile styles */
-    nav {
-        position: sticky;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: var(--card-bg);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        padding: 8px 0;
-        margin-top: 8px;  /* Increased top margin */
-    }
-
-    nav .container {
-        width: 100%;
-        padding: 0 8px;  /* Slightly increased padding */
-        max-width: 100%;
-    }
-
-    section {
-        width: 100%;
-        margin-bottom: 30px;
-        padding: 0 8px;
-    }
-
-    .container {
-        width: 100%;
-        padding: 0;
-        max-width: 100%;
-    }
-
-    .resource-grid {
-        width: 100%;
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 12px 8px;
-        margin: 0;
-    }
-
-    .resource-card {
-        width: 100%;
-        margin: 0;
-        border-radius: 8px;
-    }
-
-    #intro {
-        width: 100%;
-        padding: 15px;
-        margin: 8px 0 20px 0;
-        border-radius: 8px;
-    }
-
-    section h2 {
-        width: 100%;
-        padding: 12px;
-        margin: 0 0 12px 0;
-        font-size: 1.2rem;
-        background: var(--card-bg);
-        border-radius: 6px;
-        position: sticky;
-        top: 70px;
-        z-index: 90;
-    }
-
-    main {
-        padding: 8px 0;
-        width: 100%;
-    }
-
-    section {
-        scroll-margin-top: 100px;
-    }
-
-    footer {
-        padding: 20px 10px;
-        margin-top: 30px;
-    }
-
-    footer p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin: 8px 0;
-    }
-
-    #intro {
-        margin: 20px 12px 30px 12px;
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    #intro h2 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        margin: 0 0 15px 0;
-    }
-
-    header blockquote {
-        font-size: 0.85rem;
-        margin: 15px 0 0 0;
-        padding: 10px;
-    }
-
-    /* Navigation fixes */
-    nav {
-        width: 100%;
-        margin: 0;
-        padding: 5px;
-    }
-
-    nav .container {
-        padding: 0 5px;
-    }
-
-    nav ul {
-        gap: 5px;
-        padding: 0;
-        margin: 0;
-    }
-
-    /* Section adjustments */
-    main {
-        padding: 10px 0;
-        overflow-x: hidden;
-    }
-
-    section {
-        padding: 0 10px;
-        margin-bottom: 20px;
-        width: 100%;
-    }
-
-    .resource-grid {
-        padding: 10px 0;
-        gap: 10px;
-    }
-
-    /* Card adjustments */
-    .resource-card {
-        margin: 0;
-        width: 100%;
-    }
+  header {
+    padding: 30px 12px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+    padding: 0 10px;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    padding: 0 12px;
+    margin-bottom: 15px;
+  }
+
+  header blockquote {
+    font-size: 0.85rem;
+    padding: 12px;
+    margin: 15px 12px 0;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav a {
+    padding: 10px;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    position: relative;
+    width: 100%;
+    background: var(--card-bg);
+    z-index: 1000;
+    padding: 4px 0;
+  }
+
+  .nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  /* Adjust main content when nav is fixed */
+  .nav-fixed + main {
+    padding-top: 60px;
+  }
+
+  main {
+    transition: padding-top 0.3s ease;
+  }
+
+  nav .container {
+    width: 100%;
+    padding: 0 6px;
+    max-width: 100%;
+  }
+
+  nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 4px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background: transparent;
+  }
+
+  main {
+    padding-top: 80px; /* Adjust for mobile nav height */
+  }
+
+  section {
+    scroll-margin-top: 80px;
+  }
+
+  /* Adjust section headers */
+  section h2 {
+    position: sticky;
+    top: 70px; /* Adjust based on nav height */
+    background: var(--card-bg);
+    z-index: 90;
+    margin: 0;
+    padding: 10px;
+  }
+
+  nav ul {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 10px;
+  }
+
+  .resource-card {
+    margin: 10px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  /* Enhanced Mobile Navigation */
+  nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* Use icons for navigation */
+  nav a::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.2rem;
+  }
+
+  nav a[href="#videos"]::before {
+    content: "\f03d";
+  }
+  nav a[href="#papers"]::before {
+    content: "\f1ea";
+  }
+  nav a[href="#repos"]::before {
+    content: "\f126";
+  }
+  nav a[href="#courses"]::before {
+    content: "\f19d";
+  }
+  nav a[href="#books"]::before {
+    content: "\f02d";
+  }
+
+  main {
+    padding-bottom: 70px;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+
+  /* Enhanced Card Layout */
+  .resource-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .resource-card {
+    margin: 0;
+    border-radius: 12px;
+  }
+
+  /* Improved Card Header */
+  .card-header {
+    padding: 12px 15px;
+  }
+
+  .card-header h3 {
+    font-size: 1rem;
+  }
+
+  /* Compact Card Body */
+  .card-body {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* Enhanced Mobile Tags */
+  .year-tag,
+  .platform-tag {
+    font-size: 0.75rem;
+    padding: 2px 6px;
+  }
+
+  /* Improved Button Style */
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+
+  /* Header Adjustments */
+  header {
+    padding: 30px 0 20px;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  /* Section Adjustments */
+  section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  #intro {
+    padding: 20px 15px;
+    margin: 12px 8px 25px 8px;
+  }
+
+  #intro p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  #intro ul {
+    margin: 12px 0 12px 20px;
+  }
+
+  #intro li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+  }
+
+  /* Update the mobile navigation styles */
+  /* Fix navigation positioning */
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 6px 0;
+    margin-top: 4px;
+  }
+
+  nav .container {
+    width: 100%;
+    padding: 0 6px;
+    max-width: 100%;
+  }
+
+  nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 4px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background: transparent;
+  }
+
+  nav li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  nav a {
+    font-size: 0.7rem;
+    padding: 6px 2px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: var(--light-color);
+    min-height: 32px;
+    width: 100%;
+    color: var(--dark-color);
+    font-weight: 500;
+  }
+
+  /* Update the grid layout for the last item */
+  nav ul li:nth-child(4) {
+    grid-column: 1/2;
+  }
+
+  nav ul li:nth-child(5) {
+    grid-column: 2/3;
+  }
+
+  /* Active state */
+  nav a.active {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  /* Adjust main content spacing */
+  main {
+    padding-top: 8px;
+  }
+
+  section {
+    scroll-margin-top: 90px;
+  }
+
+  /* Adjust section headers */
+  section h2 {
+    position: sticky;
+    top: 85px;
+    font-size: 1.1rem;
+    padding: 8px;
+    margin: 0 0 8px 0;
+    background: var(--card-bg);
+    border-radius: 4px;
+  }
+
+  /* Update mobile styles */
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 8px 0;
+    margin-top: 8px; /* Increased top margin */
+  }
+
+  nav .container {
+    width: 100%;
+    padding: 0 8px; /* Slightly increased padding */
+    max-width: 100%;
+  }
+
+  section {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 0 8px;
+  }
+
+  .container {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .resource-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 8px;
+    margin: 0;
+  }
+
+  .resource-card {
+    width: 100%;
+    margin: 0;
+    border-radius: 8px;
+  }
+
+  #intro {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0 20px 0;
+    border-radius: 8px;
+  }
+
+  section h2 {
+    width: 100%;
+    padding: 12px;
+    margin: 0 0 12px 0;
+    font-size: 1.2rem;
+    background: var(--card-bg);
+    border-radius: 6px;
+    position: sticky;
+    top: 70px;
+    z-index: 90;
+  }
+
+  main {
+    padding: 8px 0;
+    width: 100%;
+  }
+
+  section {
+    scroll-margin-top: 100px;
+  }
+
+  footer {
+    padding: 20px 10px;
+    margin-top: 30px;
+  }
+
+  footer p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 8px 0;
+  }
+
+  #intro {
+    margin: 20px 12px 30px 12px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  #intro h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    margin: 0 0 15px 0;
+  }
+
+  header blockquote {
+    font-size: 0.85rem;
+    margin: 15px 0 0 0;
+    padding: 10px;
+  }
+
+  /* Navigation fixes */
+  nav {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+  }
+
+  nav .container {
+    padding: 0 5px;
+  }
+
+  nav ul {
+    gap: 5px;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Section adjustments */
+  main {
+    padding: 10px 0;
+    overflow-x: hidden;
+  }
+
+  section {
+    padding: 0 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .resource-grid {
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  /* Card adjustments */
+  .resource-card {
+    margin: 0;
+    width: 100%;
+  }
 }
 
 /* Small Phone Optimizations */
 @media (max-width: 360px) {
-    header {
-        padding: 25px 10px;
-    }
+  header {
+    padding: 25px 10px;
+  }
 
-    header h1 {
-        font-size: 1.3rem;
-    }
+  header h1 {
+    font-size: 1.3rem;
+  }
 
-    .subtitle {
-        font-size: 0.85rem;
-        line-height: 1.4;
-    }
+  .subtitle {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
 
-    header blockquote {
-        font-size: 0.8rem;
-        padding: 10px;
-        margin: 12px 8px 0;
-    }
+  header blockquote {
+    font-size: 0.8rem;
+    padding: 10px;
+    margin: 12px 8px 0;
+  }
 
-    nav a {
-        font-size: 0.65rem;
-        min-height: 40px;
-    }
+  nav a {
+    font-size: 0.65rem;
+    min-height: 40px;
+  }
 
-    nav a::before {
-        font-size: 0.9rem;
-    }
+  nav a::before {
+    font-size: 0.9rem;
+  }
 
-    .card-header h3 {
-        font-size: 0.9rem;
-    }
+  .card-header h3 {
+    font-size: 0.9rem;
+  }
 
-    .card-title {
-        font-size: 1rem;
-    }
+  .card-title {
+    font-size: 1rem;
+  }
 
-    .btn {
-        font-size: 0.8rem;
-        padding: 8px;
-    }
+  .btn {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
 
-    #intro {
-        margin: 15px 10px 25px 10px;
-        padding: 15px;
-    }
+  #intro {
+    margin: 15px 10px 25px 10px;
+    padding: 15px;
+  }
 
-    #intro h2 {
-        font-size: 1.2rem;
-    }
+  #intro h2 {
+    font-size: 1.2rem;
+  }
 
-    #intro p {
-        font-size: 0.9rem;
-    }
+  #intro p {
+    font-size: 0.9rem;
+  }
 
-    #intro li {
-        font-size: 0.9rem;
-        margin-bottom: 8px;
-    }
+  #intro li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
 }
 
 /* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1a1a1a;
-        color: #f0f0f0;
-    }
+  body {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+  }
 
-    .resource-card {
-        background-color: #2d2d2d;
-        border-color: #3d3d3d;
-    }
+  .resource-card {
+    background-color: #2d2d2d;
+    border-color: #3d3d3d;
+  }
 
-    .card-text {
-        color: #b0b0b0;
-    }
+  .card-text {
+    color: #b0b0b0;
+  }
 
-    nav {
-        background-color: rgba(45, 45, 45, 0.95);
-    }
+  nav {
+    background-color: rgba(45, 45, 45, 0.95);
+  }
 
-    nav a {
-        color: #f0f0f0;
-    }
+  nav a {
+    color: #f0f0f0;
+  }
 }
 
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) and (max-width: 768px) {
-    nav a {
-        background: var(--dark-color);
-        color: var(--light-color);
-    }
+  nav a {
+    background: var(--dark-color);
+    color: var(--light-color);
+  }
 
-    section h2 {
-        background: var(--dark-color);
-    }
+  section h2 {
+    background: var(--dark-color);
+  }
 }
 
 /* Dark Mode Adjustments for Mobile */
 @media (prefers-color-scheme: dark) and (max-width: 768px) {
-    nav {
-        background: rgba(45, 45, 45, 0.95);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  nav {
+    background: rgba(45, 45, 45, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .resource-card {
-        background-color: #2d2d2d;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  .resource-card {
+    background-color: #2d2d2d;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
 
-    .card-header {
-        background-color: #1a1a1a;
-    }
+  .card-header {
+    background-color: #1a1a1a;
+  }
 
-    .card-footer {
-        background-color: #1a1a1a;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
+  .card-footer {
+    background-color: #1a1a1a;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
 }
 
 /* Print Styles */
 @media print {
-    .resource-card {
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
+  .resource-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
 
-    nav, .btn {
-        display: none;
-    }
+  nav,
+  .btn {
+    display: none;
+  }
 }
 
 /* Add new class for fixed navigation */
 .nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Mobile Responsive Updates */
+@media (max-width: 768px) {
+  /* Navigation container */
+  nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: var(--card-bg);
+    z-index: 1000;
+    padding: 8px 0;
+  }
+
+  nav .container {
+    width: 100%;
+    padding: 0 8px;
+    max-width: 100%;
+  }
+
+  /* Navigation grid layout */
+  nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Position last two items */
+  nav ul li:nth-child(4) {
+    grid-column: 1/2;
+  }
+
+  nav ul li:nth-child(5) {
+    grid-column: 2/3;
+  }
+
+  /* Navigation buttons */
+  nav a {
+    font-size: 0.75rem;
+    padding: 8px 4px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--light-color);
+    border-radius: 6px;
+    min-height: 40px;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  /* Active state */
+  nav a.active {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  /* Content adjustments */
+  main {
+    padding-top: 16px;
+  }
+
+  section {
+    scroll-margin-top: 80px;
+  }
+
+  /* Section headers */
+  section h2 {
+    position: sticky;
+    top: 70px;
+    background: var(--card-bg);
+    padding: 12px;
+    margin: 0 0 16px 0;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    z-index: 90;
+  }
+
+  /* Resource cards */
+  .resource-grid {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .resource-card {
+    margin: 0;
+    border-radius: 8px;
+  }
+}
+
+/* Small device optimizations */
+@media (max-width: 360px) {
+  nav a {
+    font-size: 0.7rem;
+    padding: 6px 2px;
+  }
+
+  nav ul {
+    gap: 6px;
+  }
+
+  section h2 {
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .nav-fixed {
+    background: rgba(45, 45, 45, 0.95);
+  }
+
+  nav a {
+    background: var(--dark-color);
+    color: var(--light-color);
+  }
+
+  section h2 {
+    background: var(--dark-color);
+  }
+}
+
+/* Fix mobile navigation and content visibility */
+@media (max-width: 768px) {
+  /* Reset problematic styles */
+  body {
+    overflow-x: hidden;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* Fix main content container */
+  main {
+    padding-top: 70px;
+    min-height: calc(100vh - 70px);
+    position: relative;
+    z-index: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Fix navigation */
+  nav {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: auto;
+    background: var(--card-bg);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 8px 0;
+  }
+
+  /* Fix section visibility */
+  section {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--card-bg);
+    z-index: 2;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Fix resource grid */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 10px;
+    width: 100%;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Fix card visibility */
+  .resource-card {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    margin: 0 0 15px 0;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transform: none;
+  }
+
+  /* Fix content container */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  /* Fix header */
+  header {
+    padding: 20px 0;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Fix intro section */
+  #intro {
+    margin: 15px 0;
+    padding: 20px;
+    width: 100%;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Dark mode fixes */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #1a1a1a;
+    }
+
+    section {
+      background: #1a1a1a;
+    }
+
+    .resource-card {
+      background: #2d2d2d;
+      border-color: #3d3d3d;
+    }
+
+    nav {
+      background: rgba(45, 45, 45, 0.95);
+    }
+  }
+}
+
+/* Small device specific fixes */
+@media (max-width: 360px) {
+  main {
+    padding-top: 60px;
+  }
+
+  nav {
+    padding: 5px 0;
+  }
+
+  section {
+    padding: 10px;
+  }
+
+  .resource-grid {
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .resource-card {
+    margin: 0 0 10px 0;
+  }
+}
+
+/* Fix mobile layout */
+@media (max-width: 768px) {
+  /* Main container fixes */
+  .container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+
+  /* Navigation fixes */
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    z-index: 1000;
+    padding: 8px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Main content fixes */
+  main {
+    padding: 20px 0;
+    margin-top: 0;
+    min-height: calc(100vh - 60px);
+  }
+
+  /* Section fixes */
+  section {
+    margin-bottom: 30px;
+    background: transparent;
+  }
+
+  /* Resource grid fixes */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  /* Card fixes */
+  .resource-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Card content fixes */
+  .card-header {
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .card-body {
+    padding: 15px;
+    background: var(--card-bg);
+  }
+
+  .card-footer {
+    padding: 15px;
+    background: var(--card-bg);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  /* Dark mode fixes */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #1a1a1a;
+      color: #f0f0f0;
+    }
+
+    .resource-card {
+      background: #2d2d2d;
+      border-color: #3d3d3d;
+    }
+
+    .card-body,
+    .card-footer {
+      background: #2d2d2d;
+    }
+
+    nav {
+      background: rgba(45, 45, 45, 0.95);
+    }
+  }
+}
+
+/* Small device fixes */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  nav {
+    padding: 5px 0;
+  }
+
+  .resource-grid {
+    gap: 10px;
+  }
+
+  .card-header {
+    padding: 10px;
+  }
+
+  .card-body,
+  .card-footer {
+    padding: 12px;
+  }
+}
+
+/* Fix mobile layout issues */
+@media (max-width: 768px) {
+  /* Body and HTML fixes */
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Main container fixes */
+  main {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    overflow-y: visible;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Section fixes */
+  section {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 15px;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Navigation fixes */
+  nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--card-bg);
+    padding: 8px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Resource grid fixes */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    width: 100%;
+    padding: 15px 0;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Card fixes */
+  .resource-card {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Container fixes */
+  .container {
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  /* Remove problematic transforms and animations */
+  .resource-card {
+    transform: none !important;
+    animation: none !important;
+  }
+
+  /* Fix section headers */
+  section h2 {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    margin: 0 0 15px 0;
+    background: var(--card-bg);
+    z-index: 90;
+  }
+}
+
+/* Small device adjustments */
+@media (max-width: 360px) {
+  main {
+    padding-top: 50px;
+  }
+
+  section {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+}
+
+/* Add these styles at the end of your CSS file */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* Adjust this value based on your nav height */
+}
+
+section {
+  scroll-margin-top: 70px; /* Should match the scroll-padding-top */
+}
+
+/* Update navigation styles */
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  z-index: 1000;
+  padding: 8px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav a.active {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  nav a.active {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  section {
+    scroll-margin-top: 70px;
+  }
+
+  html {
+    scroll-padding-top: 70px;
+  }
+
+  main {
+    padding-top: 10px;
+  }
+}
+
+/* Update these styles - add at the end of your CSS file */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--card-bg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 70px;
+  }
+
+  nav {
+    position: fixed;
+  }
+
+  main {
+    padding-top: 70px;
+  }
+}
+
+/* Fix content visibility */
+main {
+  display: block;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding-top: 20px;
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  display: block;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 15px;
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  padding: 15px 0;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Navigation fixes */
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  z-index: 1000;
+  padding: 8px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Container fixes */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  overflow: visible;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  main {
+    padding-top: 70px;
+  }
+
+  nav {
+    position: fixed;
+  }
+
+  section {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+
+  .resource-grid {
+    padding: 10px;
+  }
+}
+
+/* === FINAL MOBILE LAYOUT FIXES (Add at the end) === */
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    position: relative; /* Ensure body is the reference for positioning */
+    min-height: 100vh;
+    overflow-y: auto; /* Allow vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  nav {
+    position: sticky; /* Keep nav sticky at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    z-index: 1000;
+    padding: 8px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: auto; /* Ensure height is not fixed */
+    margin-top: 0; /* Remove any top margin */
+  }
+
+  main {
+    display: block; /* Ensure main is displayed */
+    padding-top: 80px; /* Add padding to push content below sticky nav (adjust if nav height changes) */
+    padding-bottom: 20px; /* Add some space at the bottom */
+    width: 100%;
+    min-height: calc(100vh - 80px); /* Ensure it takes up vertical space */
+    visibility: visible; /* Ensure visibility */
+    opacity: 1; /* Ensure opacity */
+    position: relative; /* Reset position if previously fixed/absolute */
+    z-index: 1; /* Ensure it's behind nav if needed, but above default */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-y: visible; /* Allow vertical overflow/scrolling */
+  }
+
+  section {
+    display: block; /* Ensure sections are displayed */
+    visibility: visible; /* Ensure visibility */
+    opacity: 1; /* Ensure opacity */
+    width: 100%;
+    padding: 15px; /* Consistent padding */
+    margin-bottom: 20px; /* Space between sections */
+    position: relative; /* Reset position */
+    z-index: 2; /* Ensure sections are above main background if needed */
+    background: transparent; /* Reset background if previously set */
+    scroll-margin-top: 80px; /* Offset for scrolling to anchors */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%; /* Ensure container doesn't exceed screen width */
+    padding: 0 15px; /* Horizontal padding */
+    margin: 0 auto;
+    overflow: visible; /* Allow content overflow */
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    gap: 15px;
+    padding: 15px 0; /* Vertical padding */
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .resource-card {
+    display: block; /* Ensure cards are displayed */
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    margin-bottom: 15px; /* Space between cards */
+    transform: none !important; /* Remove transforms */
+    animation: none !important; /* Remove animations */
+    background: var(--card-bg); /* Ensure background */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  /* Ensure section headers are not overly complex */
+  section h2 {
+    position: relative; /* Change from sticky to relative */
+    top: auto; /* Reset top */
+    background: transparent; /* Reset background */
+    padding: 0 0 10px 0; /* Adjust padding */
+    margin: 0 0 15px 0; /* Adjust margin */
+    border-bottom: 2px solid var(--primary-color); /* Add bottom border like desktop */
+    font-size: 1.4rem;
+    z-index: auto; /* Reset z-index */
+    color: var(--secondary-color); /* Ensure color */
+  }
+}
+
+/* Dark mode adjustments for the fixes */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  nav {
+    background: rgba(45, 45, 45, 0.95); /* Dark nav background */
+  }
+
+  main {
+    /* No specific dark mode needed unless background changes */
+  }
+
+  section {
+    /* No specific dark mode needed unless background changes */
+  }
+
+  .resource-card {
+    background: #2d2d2d; /* Dark card background */
+    border-color: #3d3d3d; /* Dark card border */
+  }
+
+  section h2 {
+    color: var(--light-color); /* Lighter color for heading in dark mode */
+    border-bottom-color: var(--primary-color);
+  }
+}
+
+/* Smallest device adjustments */
+@media (max-width: 360px) {
+  main {
+    padding-top: 70px; /* Slightly less padding if nav is smaller */
+  }
+  section {
+    padding: 10px;
+    scroll-margin-top: 70px;
+  }
+  .container {
+    padding: 0 10px;
+  }
+  section h2 {
+    font-size: 1.2rem;
+  }
 }

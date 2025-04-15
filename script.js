@@ -1,51 +1,70 @@
 // Prevent zoom on double tap
-document.addEventListener('dblclick', function(e) {
+document.addEventListener(
+  "dblclick",
+  function (e) {
     e.preventDefault();
-}, { passive: false });
+  },
+  { passive: false }
+);
 
 // Fix initial viewport scaling
-window.addEventListener('load', function() {
-    // Reset viewport zoom level
-    const viewport = document.querySelector('meta[name="viewport"]');
-    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-    
-    // Force redraw
-    document.body.style.display = 'none';
-    document.body.offsetHeight;
-    document.body.style.display = '';
+window.addEventListener("load", function () {
+  // Reset viewport zoom level
+  const viewport = document.querySelector('meta[name="viewport"]');
+  viewport.setAttribute(
+    "content",
+    "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  );
+
+  // Force redraw
+  document.body.style.display = "none";
+  document.body.offsetHeight;
+  document.body.style.display = "";
 });
 
-// Load the JSON data
-document.addEventListener('DOMContentLoaded', function() {
-    showLoadingState();
-    addLoadingAnimation();
-    
-    fetch('resources.json')
-        .then(response => response.json())
-        .then(data => {
-            // Remove loading skeletons
-            document.querySelectorAll('.skeleton').forEach(skeleton => {
-                skeleton.remove();
-            });
-            
-            displayVideos(data.videos);
-            displayPapers(data.papers);
-            displayRepos(data.repos);
-            displayCourses(data.courses);
-            displayBooks(data.books);
-        })
-        .catch(error => console.error('Error loading resources:', error));
+// Update the DOMContentLoaded event listener at the beginning of the file
+document.addEventListener("DOMContentLoaded", async function () {
+  try {
+    // Load and display content
+    const response = await fetch("resources.json");
+    const data = await response.json();
+
+    // Display content sections
+    displayVideos(data.videos);
+    displayPapers(data.papers);
+    displayRepos(data.repos);
+    displayCourses(data.courses);
+    displayBooks(data.books);
+
+    // Make content visible
+    document.querySelectorAll("section").forEach((section) => {
+      section.style.display = "block";
+      section.style.visibility = "visible";
+      section.style.opacity = "1";
+    });
+
+    // Show main content
+    const main = document.querySelector("main");
+    main.style.display = "block";
+    main.style.visibility = "visible";
+    main.style.opacity = "1";
+
+    // Initialize navigation
+    initializeNavigation();
+  } catch (error) {
+    console.error("Error loading content:", error);
+  }
 });
 
 // Display Videos
 function displayVideos(videos) {
-    const container = document.querySelector('#videos .resource-grid');
-    
-    videos.forEach(video => {
-        const card = document.createElement('div');
-        card.className = 'resource-card';
-        
-        card.innerHTML = `
+  const container = document.querySelector("#videos .resource-grid");
+
+  videos.forEach((video) => {
+    const card = document.createElement("div");
+    card.className = "resource-card";
+
+    card.innerHTML = `
             <div class="card-header">
                 <h3>Video</h3>
             </div>
@@ -57,20 +76,20 @@ function displayVideos(videos) {
                 <a href="${video.link}" target="_blank" class="btn">Watch</a>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
+
+    container.appendChild(card);
+  });
 }
 
 // Display Research Papers
 function displayPapers(papers) {
-    const container = document.querySelector('#papers .resource-grid');
-    
-    papers.forEach(paper => {
-        const card = document.createElement('div');
-        card.className = 'resource-card';
-        
-        card.innerHTML = `
+  const container = document.querySelector("#papers .resource-grid");
+
+  papers.forEach((paper) => {
+    const card = document.createElement("div");
+    card.className = "resource-card";
+
+    card.innerHTML = `
             <div class="card-header">
                 <h3>Paper</h3>
             </div>
@@ -83,20 +102,20 @@ function displayPapers(papers) {
                 <a href="${paper.link}" target="_blank" class="btn">Read</a>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
+
+    container.appendChild(card);
+  });
 }
 
 // Display GitHub Repositories
 function displayRepos(repos) {
-    const container = document.querySelector('#repos .resource-grid');
-    
-    repos.forEach(repo => {
-        const card = document.createElement('div');
-        card.className = 'resource-card';
-        
-        card.innerHTML = `
+  const container = document.querySelector("#repos .resource-grid");
+
+  repos.forEach((repo) => {
+    const card = document.createElement("div");
+    card.className = "resource-card";
+
+    card.innerHTML = `
             <div class="card-header">
                 <h3>GitHub Repository</h3>
             </div>
@@ -108,20 +127,20 @@ function displayRepos(repos) {
                 <a href="${repo.link}" target="_blank" class="btn">View Repository</a>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
+
+    container.appendChild(card);
+  });
 }
 
 // Display Courses & Tutorials
 function displayCourses(courses) {
-    const container = document.querySelector('#courses .resource-grid');
-    
-    courses.forEach(course => {
-        const card = document.createElement('div');
-        card.className = 'resource-card';
-        
-        card.innerHTML = `
+  const container = document.querySelector("#courses .resource-grid");
+
+  courses.forEach((course) => {
+    const card = document.createElement("div");
+    card.className = "resource-card";
+
+    card.innerHTML = `
             <div class="card-header">
                 <h3>Course/Tutorial</h3>
             </div>
@@ -134,20 +153,20 @@ function displayCourses(courses) {
                 <a href="${course.link}" target="_blank" class="btn">Access Course</a>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
+
+    container.appendChild(card);
+  });
 }
 
 // Display Books
 function displayBooks(books) {
-    const container = document.querySelector('#books .resource-grid');
-    
-    books.forEach(book => {
-        const card = document.createElement('div');
-        card.className = 'resource-card';
-        
-        card.innerHTML = `
+  const container = document.querySelector("#books .resource-grid");
+
+  books.forEach((book) => {
+    const card = document.createElement("div");
+    card.className = "resource-card";
+
+    card.innerHTML = `
             <div class="card-header">
                 <h3>Book</h3>
             </div>
@@ -159,88 +178,138 @@ function displayBooks(books) {
                 <a href="${book.link}" target="_blank" class="btn">Access Book</a>
             </div>
         `;
-        
-        container.appendChild(card);
-    });
+
+    container.appendChild(card);
+  });
 }
 
 // Add loading animation
 function addLoadingAnimation() {
-    const sections = document.querySelectorAll('section');
-    sections.forEach((section, index) => {
-        section.style.opacity = '0';
-        section.style.animation = `fadeIn 0.5s ease forwards ${index * 0.2}s`;
-    });
+  const sections = document.querySelectorAll("section");
+  sections.forEach((section, index) => {
+    section.style.opacity = "0";
+    section.style.animation = `fadeIn 0.5s ease forwards ${index * 0.2}s`;
+  });
 }
 
-// Smooth scroll for navigation
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        const offset = 100; // Adjust this value based on your header height
+// Remove the existing scroll code and replace it with this:
+document.addEventListener("DOMContentLoaded", function () {
+  // Handle navigation clicks
+  document.querySelectorAll("nav a").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
 
-        const targetPosition = targetSection.getBoundingClientRect().top;
-        const offsetPosition = targetPosition + window.pageYOffset - offset;
+      // Get the target section
+      const targetId = this.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
 
+      if (targetSection) {
+        // Get the nav height
+        const navHeight = document.querySelector("nav").offsetHeight;
+
+        // Calculate position
+        const targetPosition = targetSection.offsetTop - navHeight;
+
+        // Scroll to target
         window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
+          top: targetPosition,
+          behavior: "smooth",
         });
+
+        // Update active state
+        document
+          .querySelectorAll("nav a")
+          .forEach((a) => a.classList.remove("active"));
+        this.classList.add("active");
+      }
     });
+  });
+});
+
+// Update scroll margins
+function updateScrollMargins() {
+  const navHeight = document.querySelector("nav").offsetHeight;
+  document.querySelectorAll("section").forEach((section) => {
+    section.style.scrollMarginTop = `${navHeight + 20}px`;
+  });
+}
+
+// Call on load and resize
+window.addEventListener("load", updateScrollMargins);
+window.addEventListener("resize", updateScrollMargins);
+
+// Update active state on scroll
+window.addEventListener("scroll", function () {
+  const navHeight = document.querySelector("nav").offsetHeight;
+  const scrollPosition = window.scrollY + navHeight + 50;
+
+  document.querySelectorAll("section").forEach((section) => {
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+    const id = section.getAttribute("id");
+    const navLink = document.querySelector(`nav a[href="#${id}"]`);
+
+    if (scrollPosition >= top && scrollPosition < bottom) {
+      navLink.classList.add("active");
+    } else {
+      navLink.classList.remove("active");
+    }
+  });
 });
 
 // Add active state to navigation items
 function updateActiveNavItem() {
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('nav a');
-    
-    sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const offset = 150; // Adjust this value to change when the active state triggers
-        
-        if (rect.top <= offset && rect.bottom >= offset) {
-            const targetId = `#${section.id}`;
-            navItems.forEach(item => {
-                if (item.getAttribute('href') === targetId) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
+  const sections = document.querySelectorAll("section");
+  const navItems = document.querySelectorAll("nav a");
+
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    const offset = 150; // Adjust this value to change when the active state triggers
+
+    if (rect.top <= offset && rect.bottom >= offset) {
+      const targetId = `#${section.id}`;
+      navItems.forEach((item) => {
+        if (item.getAttribute("href") === targetId) {
+          item.classList.add("active");
+        } else {
+          item.classList.remove("active");
         }
-    });
+      });
+    }
+  });
 }
 
 // Add scroll event listener for active state
-window.addEventListener('scroll', updateActiveNavItem);
+window.addEventListener("scroll", updateActiveNavItem);
 
 // Intersection Observer for scroll animations
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
     });
-}, {
-    threshold: 0.1
-});
+  },
+  {
+    threshold: 0.1,
+  }
+);
 
 // Observe all resource cards
-document.querySelectorAll('.resource-card').forEach(card => {
-    observer.observe(card);
+document.querySelectorAll(".resource-card").forEach((card) => {
+  observer.observe(card);
 });
 
 // Add loading state
 function showLoadingState() {
-    const containers = document.querySelectorAll('.resource-grid');
-    containers.forEach(container => {
-        for (let i = 0; i < 3; i++) {
-            const skeleton = document.createElement('div');
-            skeleton.className = 'resource-card skeleton';
-            skeleton.innerHTML = `
+  const containers = document.querySelectorAll(".resource-grid");
+  containers.forEach((container) => {
+    for (let i = 0; i < 3; i++) {
+      const skeleton = document.createElement("div");
+      skeleton.className = "resource-card skeleton";
+      skeleton.innerHTML = `
                 <div class="card-header"></div>
                 <div class="card-body">
                     <div style="height: 24px; margin-bottom: 15px;"></div>
@@ -248,20 +317,58 @@ function showLoadingState() {
                 </div>
                 <div class="card-footer"></div>
             `;
-            container.appendChild(skeleton);
-        }
-    });
+      container.appendChild(skeleton);
+    }
+  });
 }
 
 // Add scroll listener for fixed navigation
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('nav');
-    const header = document.querySelector('header');
-    const headerBottom = header.offsetTop + header.offsetHeight;
+window.addEventListener("scroll", function () {
+  const nav = document.querySelector("nav");
+  const header = document.querySelector("header");
+  const headerBottom = header.offsetTop + header.offsetHeight;
 
-    if (window.scrollY >= headerBottom) {
-        nav.classList.add('nav-fixed');
-    } else {
-        nav.classList.remove('nav-fixed');
-    }
+  if (window.scrollY >= headerBottom) {
+    nav.classList.add("nav-fixed");
+  } else {
+    nav.classList.remove("nav-fixed");
+  }
 });
+
+// Ensure content is visible after loading
+document.addEventListener("DOMContentLoaded", function () {
+  // Force layout recalculation
+  document.body.style.display = "none";
+  document.body.offsetHeight;
+  document.body.style.display = "";
+
+  // Remove any loading states
+  document.querySelectorAll(".skeleton").forEach((skeleton) => {
+    skeleton.remove();
+  });
+
+  // Make sure all sections are visible
+  document.querySelectorAll("section").forEach((section) => {
+    section.style.visibility = "visible";
+    section.style.opacity = "1";
+  });
+});
+
+// Add this new function for navigation
+function initializeNavigation() {
+  const navLinks = document.querySelectorAll("nav a");
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+        navLinks.forEach((link) => link.classList.remove("active"));
+        this.classList.add("active");
+      }
+    });
+  });
+}
