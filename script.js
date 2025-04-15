@@ -1,3 +1,20 @@
+// Prevent zoom on double tap
+document.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+}, { passive: false });
+
+// Fix initial viewport scaling
+window.addEventListener('load', function() {
+    // Reset viewport zoom level
+    const viewport = document.querySelector('meta[name="viewport"]');
+    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    
+    // Force redraw
+    document.body.style.display = 'none';
+    document.body.offsetHeight;
+    document.body.style.display = '';
+});
+
 // Load the JSON data
 document.addEventListener('DOMContentLoaded', function() {
     showLoadingState();

@@ -11,6 +11,14 @@
     --transition: all 0.3s ease;
 }
 
+/* Add these viewport fixes at the top of your CSS file */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
 
 * {
     margin: 0;
@@ -852,6 +860,83 @@ footer .container {
         margin-bottom: 10px;
         font-size: 0.95rem;
         padding-right: 10px;
+    }
+
+    /* Container adjustments */
+    .container {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    /* Header adjustments */
+    header {
+        padding: 20px 10px;
+        margin: 0;
+        width: 100%;
+    }
+
+    header .container {
+        padding: 0 10px;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        padding: 0;
+        margin: 0 0 15px 0;
+    }
+
+    header blockquote {
+        font-size: 0.85rem;
+        margin: 15px 0 0 0;
+        padding: 10px;
+    }
+
+    /* Navigation fixes */
+    nav {
+        width: 100%;
+        margin: 0;
+        padding: 5px;
+    }
+
+    nav .container {
+        padding: 0 5px;
+    }
+
+    nav ul {
+        gap: 5px;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Section adjustments */
+    main {
+        padding: 10px 0;
+        overflow-x: hidden;
+    }
+
+    section {
+        padding: 0 10px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .resource-grid {
+        padding: 10px 0;
+        gap: 10px;
+    }
+
+    /* Card adjustments */
+    .resource-card {
+        margin: 0;
+        width: 100%;
     }
 }
 
